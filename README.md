@@ -29,8 +29,8 @@ Response:
 ```javascript
 [
     {
-        "accountId": "573582b24911",
-        "balance": 80.1
+        "accountId": "123",
+        "balance": "10000.0"
     }
 ]
 ```
@@ -42,7 +42,7 @@ Sample request:
 ```javascript
 {
 	"accountId":"456",
-	"balance":"5.0"
+	"balance":"50000.0"
 }
 ```
 
@@ -51,7 +51,7 @@ Sample response:
 ```javascript
 {
 	"accountId":"456",
-	"balance":"5.0"
+	"balance":"50000.0"
 }
 ```
 Duplicated account response:
@@ -68,8 +68,8 @@ Response:
 **Status: 200 OK**
 ```javascript
 {
-    "accountId": "37d3807795f7",
-    "balance": 55.3
+    "accountId": "123",
+    "balance": "10000.0"
 }
 ```
 Account doesn't exist:
@@ -84,9 +84,9 @@ Account doesn't exist:
 Sample request:
 ```javascript
 {
-	"source":"1",
-	"target":"2",
-	"balance":"5.0"
+	"source":"123",
+	"target":"456",
+	"balance":"5000"
 }
 ```
 
@@ -95,12 +95,12 @@ Sample response:
 ```javascript
 [
     {
-        "accountId": "1",
-        "balance": "45"
+        "accountId": "123",
+        "balance": "5000"
     },
     {
-        "accountId": "2",
-        "balance": "10"
+        "accountId": "456",
+        "balance": "10000"
     }
 ]
 ```

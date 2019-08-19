@@ -31,18 +31,6 @@ Response:
     {
         "accountId": "573582b24911",
         "balance": 80.1
-    },
-    {
-        "accountId": "62002b0f686d",
-        "balance": 15
-    },
-    {
-        "accountId": "37d3807795f7",
-        "balance": 130.1
-    },
-    {
-        "accountId": "9de1807c1727",
-        "balance": 100.1
     }
 ]
 ```

@@ -1,18 +1,18 @@
 
-# moneytransfer
+# money transfer between accounts
 
 Money Transfer webservice supporting parallel calls
 
 Application starts webserver on http://localhost:9090 by default
 
- - **Jetty** - as a server layer
- - **Jersey** - as a JAX-RS implementation
- - **JUnit 5** - as a unit test framework
- - **Rest Assured** - for API tests
+ - **Java & MultiThreading**
+ - **Jetty**
+ - **Jersey** 
+ - **JUnit 5**
 
-Application may be started from standalone jar:
+Main class for running application:
 ```sh
-java -jar money-transfer-between-accounts-1.0-SNAPSHOT.jar
+MoneyTransferStarter.java
 ```
 or as a maven goal
 
@@ -46,7 +46,7 @@ Response:
 ]
 ```
 ---
-**POST** - persists new account 
+**POST** - Add a new account 
 **Request Body** - Account object
 
 Sample request:

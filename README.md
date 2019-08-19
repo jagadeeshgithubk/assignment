@@ -9,6 +9,7 @@ Application starts webserver on http://localhost:9090 by default
  - **Jetty**
  - **Jersey** 
  - **JUnit 5**
+ 
 
 Main class for running application:
 ```sh
@@ -61,19 +62,19 @@ Sample response:
 **Status: 200 OK**
 ```javascript
 {
-	"accountId":"2",
+	"accountId":"456",
 	"balance":"5.0"
 }
 ```
 Duplicated account response:
 **Status: 400 Bad Request**
 ```javascript
-Account with ID:2 already exists. 
+Account with ID:456 already exists. 
 Duplicates are not allowed.
 ```
 ---
 **/{accountId}** - account id
-**GET** - retrieves all accounts from database
+**GET** - retrieves all accounts from data store
 
 Response:
 **Status: 200 OK**
@@ -86,11 +87,11 @@ Response:
 Account doesn't exist:
 **Status: 204 No Content**
 
-## Transaction API - `/transactions`
+## Transfer Money API - `/transferMoney`
 
-**POST** - submit new transaction
+**POST** - Transfer money from one account to another account 
 
-**Request Body** - MoneyTransfer object
+**Request Body** - MoneyTransferDTO object
 
 Sample request:
 ```javascript

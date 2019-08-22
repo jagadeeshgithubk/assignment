@@ -1,18 +1,19 @@
 
-# moneytransfer
+# money transfer between accounts
 
 Money Transfer webservice supporting parallel calls
 
 Application starts webserver on http://localhost:9090 by default
 
- - **Jetty** - as a server layer
- - **Jersey** - as a JAX-RS implementation
- - **JUnit 5** - as a unit test framework
- - **Rest Assured** - for API tests
+ - **Java & MultiThreading**
+ - **Jetty**
+ - **Jersey** 
+ - **JUnit 5**
+ 
 
-Application may be started from standalone jar:
+Main class for running application:
 ```sh
-java -jar money-transfer-between-accounts-1.0-SNAPSHOT.jar
+MoneyTransferAppStarter.java
 ```
 or as a maven goal
 
@@ -28,32 +29,20 @@ Response:
 ```javascript
 [
     {
-        "accountId": "573582b24911",
-        "balance": 80.1
-    },
-    {
-        "accountId": "62002b0f686d",
-        "balance": 15
-    },
-    {
-        "accountId": "37d3807795f7",
-        "balance": 130.1
-    },
-    {
-        "accountId": "9de1807c1727",
-        "balance": 100.1
+        "accountId": "123",
+        "balance": "10000.0"
     }
 ]
 ```
 ---
-**POST** - persists new account 
+**POST** - Add a new account 
 **Request Body** - Account object
 
 Sample request:
 ```javascript
 {
 	"accountId":"456",
-	"balance":"5.0"
+	"balance":"50000.0"
 }
 ```
 
@@ -61,43 +50,43 @@ Sample response:
 **Status: 200 OK**
 ```javascript
 {
-	"accountId":"2",
-	"balance":"5.0"
+	"accountId":"456",
+	"balance":"50000.0"
 }
 ```
 Duplicated account response:
 **Status: 400 Bad Request**
 ```javascript
-Account with ID:2 already exists. 
+Account with ID:456 already exists. 
 Duplicates are not allowed.
 ```
 ---
 **/{accountId}** - account id
-**GET** - retrieves all accounts from database
+**GET** - retrieves all accounts from data store
 
 Response:
 **Status: 200 OK**
 ```javascript
 {
-    "accountId": "37d3807795f7",
-    "balance": 55.3
+    "accountId": "123",
+    "balance": "10000.0"
 }
 ```
 Account doesn't exist:
 **Status: 204 No Content**
 
-## Transaction API - `/transactions`
+## Transfer Money API - `/transferMoney`
 
-**POST** - submit new transaction
+**POST** - Transfer money from one account to another account 
 
-**Request Body** - MoneyTransfer object
+**Request Body** - MoneyTransferDTO object
 
 Sample request:
 ```javascript
 {
-	"source":"1",
-	"target":"2",
-	"balance":"5.0"
+	"source":"123",
+	"target":"456",
+	"balance":"5000"
 }
 ```
 
@@ -106,14 +95,20 @@ Sample response:
 ```javascript
 [
     {
-        "accountId": "1",
-        "balance": "45"
+        "accountId": "123",
+        "balance": "5000"
     },
     {
-        "accountId": "2",
-        "balance": "10"
+        "accountId": "456",
+        "balance": "10000"
     }
 ]
+```
+
+Money cannot be transfered to same account:
+**Status: 400 Conflict**
+```javascript
+Cannot transfer from account to itself.
 ```
 
 Insufficient balance on source account:

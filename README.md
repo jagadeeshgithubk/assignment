@@ -13,7 +13,7 @@ Application starts webserver on http://localhost:9090 by default
 
 Main class for running application:
 ```sh
-MoneyTransferStarter.java
+MoneyTransferAppStarter.java
 ```
 or as a maven goal
 
@@ -103,6 +103,12 @@ Sample response:
         "balance": "10000"
     }
 ]
+```
+
+Money cannot be transfered to same account:
+**Status: 400 Conflict**
+```javascript
+Cannot transfer from account to itself.
 ```
 
 Insufficient balance on source account:
